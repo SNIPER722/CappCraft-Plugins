@@ -1,0 +1,3 @@
+name: cappLogin
+main: org.cappmc.sniper722.cappLogin.cappLogin
+version: ${version}
