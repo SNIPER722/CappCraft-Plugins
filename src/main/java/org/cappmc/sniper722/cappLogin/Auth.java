@@ -13,7 +13,7 @@ import java.net.Socket;
  */
 public class Auth {
 
-    public boolean allowJoin(Player player)throws IOException{
+    public static boolean allowJoin(String playerName)throws IOException{
         final String TAG= "McUserVerify";
         boolean result = false;
         String tempResult;
@@ -21,7 +21,7 @@ public class Auth {
         BufferedReader inFromServer = new BufferedReader(new InputStreamReader(connectionsocket.getInputStream()));
         DataOutputStream outToServer = new DataOutputStream( connectionsocket.getOutputStream());
 
-        outToServer.writeBytes(TAG+";"+player.getName());
+        outToServer.writeBytes(TAG+";"+playerName);
         tempResult = inFromServer.readLine();
 
         if (tempResult.equals("true")){

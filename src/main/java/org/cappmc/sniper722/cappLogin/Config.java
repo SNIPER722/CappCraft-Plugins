@@ -26,12 +26,15 @@ public class Config {
             if (exsit){
                 Config.load(Settings);
             }
-            SetDeafult("General.toggle",true);
+            SetDeafult("Main.killswitch",false);
+            SetDeafult("General.forceCappLauncher",true);
+            SetDeafult("General.log",true);
             SetDeafult("General.disconnectMessage","$1{player}, You use the wrong launcher!");
+            SetDeafult("General.guestPermissionConsoleCommand","manuadd {player} visitor");
             SetDeafult("Auth.url","127.0.0.1");
-            SetDeafult("Auth.port","8080");
+            SetDeafult("Auth.port",8080);
             SetDeafult("SQL.url","127.0.0.1");
-            SetDeafult("SQL.port","3306");
+            SetDeafult("SQL.port",3306);
             SetDeafult("SQL.user","root");
             SetDeafult("SQL.password","password");
 

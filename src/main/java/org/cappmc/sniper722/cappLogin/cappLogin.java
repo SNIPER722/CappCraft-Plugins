@@ -15,6 +15,16 @@ public class cappLogin extends JavaPlugin{
     public static YamlConfiguration Settings;
     static File SettingsFile = new File(maindir + "config.yml");
 
+    public void onEnable(){
+
+    }
+
+    public void onDisable(){
+        Settings = null;
+    }
+
+
+
 
 
 }

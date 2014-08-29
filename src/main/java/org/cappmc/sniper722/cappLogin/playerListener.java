@@ -4,7 +4,9 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
+import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerPreLoginEvent;
+import org.bukkit.event.player.PlayerQuitEvent;
 
 import java.io.IOException;
 import java.util.logging.Level;
@@ -15,7 +17,7 @@ import java.util.logging.Level;
 public class playerListener implements Listener{
     @EventHandler(priority = EventPriority.HIGH)
     public void onPlayerLogin(PlayerPreLoginEvent event){
-        if (cappLogin.Settings.getBoolean("General.toggle")){
+        if (cappLogin.Settings.getBoolean("General.forceCappLauncher")){
             String playerName = event.getName();
             boolean result = false;
             try {
@@ -32,4 +34,24 @@ public class playerListener implements Listener{
             }
         }
     }
+
+    public void onPlayerExit(PlayerQuitEvent event){
+        if (cappLogin.Settings.getBoolean("General.log")) {
+            //TODO: Add a SQL log for quiting
+        }
+    }
+
+    public void onPlayerJoin(PlayerJoinEvent event){
+        if (cappLogin.Settings.getBoolean("General.log")) {
+            //TODO: Add a SQL log for joining
+            if (Utils.isVisitor(event.getPlayer())) {
+                String command = cappLogin.Settings.getString("General.guestPermissionConsoleCommand").replace("{player}", event.getPlayer().getName());
+                //TODO: exclute the console command
+            }
+        }
+
+    }
+
+
+
 }
