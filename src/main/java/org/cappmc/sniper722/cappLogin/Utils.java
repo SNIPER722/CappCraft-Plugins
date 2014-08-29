@@ -2,6 +2,11 @@ package org.cappmc.sniper722.cappLogin;
 
 import org.bukkit.entity.Player;
 
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.net.URLConnection;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -43,5 +48,19 @@ public class Utils {
         }
 
         return conn;
+    }
+
+    public static InputStream phpconnection(String url) throws  {
+        try {
+            URL u = new URL(url);
+            URLConnection c = u.openConnection();
+            InputStream r = c.getInputStream();
+        }catch(MalformedURLException e){
+            cappLogin.log.log(Level.WARNING,"wrong URL!",e);
+        }catch (IOException e) {
+            cappLogin.log.log(Level.WARNING,"IOE!",e);
+        }
+
+
     }
 }
