@@ -27,6 +27,8 @@ public class Config {
             }
             SetDeafult("General.toggle",true);
             SetDeafult("General.disconnectMessage","$1{player}, You use the wrong launcher!");
+            SetDeafult("Auth.url","127.0.0.1");
+            SetDeafult("Auth.port","8080");
             SetDeafult("SQL.url","127.0.0.1");
             SetDeafult("SQL.port","3306");
             SetDeafult("SQL.user","root");
