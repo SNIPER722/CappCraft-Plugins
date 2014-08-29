@@ -6,6 +6,7 @@ import org.bukkit.configuration.file.YamlConfiguration;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.logging.Level;
 
 /**
  * Created by SNIPER722 on 28/08/2014.
@@ -41,6 +42,7 @@ public class Config {
         }catch(IOException e){
             e.printStackTrace();
         }catch(InvalidConfigurationException e){
+            cappLogin.log.log(Level.WARNING,"Invalid config, Please Check!");
             e.printStackTrace();
         }
         // case error
