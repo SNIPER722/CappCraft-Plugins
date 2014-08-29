@@ -1,5 +1,7 @@
 package org.cappmc.sniper722.cappLogin;
 
+import org.bukkit.command.CommandSender;
+import org.bukkit.command.Command;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -47,6 +49,31 @@ public class cappLogin extends JavaPlugin{
 
     public void onDisable(){
         Settings = null;
+    }
+
+    @Override
+    public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
+        if (cmd.getName().equalsIgnoreCase("capplogin")){
+            if (sender.hasPermission("cappLogin.all")||sender.isOp()) {
+                if (args.length == 0) {
+                    sender.sendMessage("[cappLogin] is :"+enable);
+                }else if(args.length == 1){
+                    if (args[0].equals("on")){
+                        onEnable();
+                    }else if(args[0].equals("off")){
+                        onDisable();
+                    }else if(args[0].equals("reload")){
+                        onDisable();
+                        onEnable();
+                        log.log(Level.INFO,"[cappLogin] "+sender.getName()+" reload plugin");
+                        sender.sendMessage("[cappLogin] reloaded");
+                    }
+                }
+            }else{
+                sender.sendMessage("You do not have permission!");
+            }
+        }
+        return true;
     }
 
 
