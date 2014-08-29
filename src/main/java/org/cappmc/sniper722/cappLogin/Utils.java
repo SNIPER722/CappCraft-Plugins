@@ -50,17 +50,18 @@ public class Utils {
         return conn;
     }
 
-    public static InputStream phpconnection(String url) throws  {
+    public static InputStream phpconnection(String url){
+        InputStream result = null;
         try {
             URL u = new URL(url);
             URLConnection c = u.openConnection();
-            InputStream r = c.getInputStream();
+            result = c.getInputStream();
         }catch(MalformedURLException e){
             cappLogin.log.log(Level.WARNING,"wrong URL!",e);
         }catch (IOException e) {
             cappLogin.log.log(Level.WARNING,"IOE!",e);
         }
 
-
+         return result;
     }
 }
