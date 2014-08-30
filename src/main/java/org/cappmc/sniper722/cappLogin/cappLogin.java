@@ -60,8 +60,10 @@ public class cappLogin extends JavaPlugin{
                 }else if(args.length == 1){
                     if (args[0].equals("on")){
                         onEnable();
+                        sender.sendMessage("[cappLogin] on");
                     }else if(args[0].equals("off")){
                         onDisable();
+                        sender.sendMessage("[cappLogin] off");
                     }else if(args[0].equals("reload")){
                         onDisable();
                         onEnable();
