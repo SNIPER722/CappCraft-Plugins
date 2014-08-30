@@ -19,7 +19,9 @@ public class cappLogin extends JavaPlugin{
     static String maindir = "plugins/cappLogin/";
     public static YamlConfiguration Settings;
     static File SettingsFile = new File(maindir + "config.yml");
-    boolean enable = true;
+    public static boolean enable = true;
+    public static boolean logs = true;
+    public static boolean forceLauncher = true;
 
     public void onEnable(){
         new File(maindir).mkdir();
@@ -36,6 +38,8 @@ public class cappLogin extends JavaPlugin{
         // End of loading Settings
 
         enable = !Settings.getBoolean("Main.killswitch");
+        logs = Settings.getBoolean("General.log");
+        forceLauncher = Settings.getBoolean("General.forceCappLaunche");
         // register plugins manager
         PluginManager pm = getServer().getPluginManager();
         // Registers Listener
@@ -50,6 +54,8 @@ public class cappLogin extends JavaPlugin{
     public void onDisable(){
         Settings = null;
         enable = false;
+        logs = false;
+        forceLauncher = false;
         log.log(Level.INFO,"[cappLogin] cappLogin is unloaded");
     }
 
@@ -63,9 +69,11 @@ public class cappLogin extends JavaPlugin{
                     if (args[0].equals("on")){
                         onEnable();
                         sender.sendMessage("[cappLogin] on");
+                        log.log(Level.INFO,"[cappLogin] "+sender.getName()+" reload plugin");
                     }else if(args[0].equals("off")){
                         onDisable();
                         sender.sendMessage("[cappLogin] off");
+                        log.log(Level.INFO,"[cappLogin] "+sender.getName()+" reload plugin");
                     }else if(args[0].equals("reload")){
                         onDisable();
                         onEnable();

@@ -35,6 +35,7 @@ public class Config {
             SetDeafult("Auth.port",8080);
             SetDeafult("SQL.url","127.0.0.1");
             SetDeafult("SQL.port",3306);
+            SetDeafult("SQL.database","capplog");
             SetDeafult("SQL.table","log");
             SetDeafult("SQL.user","root");
             SetDeafult("SQL.password","password");

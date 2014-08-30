@@ -36,14 +36,14 @@ public class playerListener implements Listener{
     }
 
     public void onPlayerExit(PlayerQuitEvent event){
-        if (cappLogin.Settings.getBoolean("General.log")) {
-            //TODO: Add a SQL log for quiting
+        if (cappLogin.logs) {
+            Utils.playerLog(event.getPlayer(),false);
         }
     }
 
     public void onPlayerJoin(PlayerJoinEvent event){
-        if (cappLogin.Settings.getBoolean("General.log")) {
-            //TODO: Add a SQL log for joining
+        if (cappLogin.logs) {
+            Utils.playerLog(event.getPlayer(),true);
             if (Utils.isVisitor(event.getPlayer())) {
                 String command = cappLogin.Settings.getString("General.guestPermissionConsoleCommand").replace("{player}", event.getPlayer().getName());
                 //TODO: exclute the console command

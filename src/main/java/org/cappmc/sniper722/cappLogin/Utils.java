@@ -10,6 +10,7 @@ import java.net.URLConnection;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.logging.Level;
@@ -19,11 +20,7 @@ import java.util.logging.Level;
  */
 public class Utils {
 
-    public static String getTime(){
-        Date date = new Date();
-        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-M-dd hh:mm:ss");
-        return dateFormat.format(date);
-    }
+
 
     public static boolean isVisitor(Player player){
         boolean result = true;
@@ -34,15 +31,15 @@ public class Utils {
         return result;// true for visitor false else
     }
 
-    public static Connection sqlConnection(){
+    private static Connection sqlConnection(){
         Connection conn = null;
         String host = cappLogin.Settings.getString("SQL.url");
         int port = cappLogin.Settings.getInt("SQL.port");
-        String table = cappLogin.Settings.getString("SQL.table");
+        String db = cappLogin.Settings.getString("SQL.database");
         String user = cappLogin.Settings.getString("SQL.user");
         String password = cappLogin.Settings.getString("SQL.password");
         try{
-           conn =  DriverManager.getConnection("jdbc:mysql://" + host + ";" + port + "/" + table, user, password);
+           conn =  DriverManager.getConnection("jdbc:mysql://" + host + ";" + port + "/" + db, user, password);
         }catch(SQLException e){
             cappLogin.log.log(Level.WARNING,"Fail to connect to Database",e);
         }
@@ -63,5 +60,55 @@ public class Utils {
         }
 
          return result;
+    }
+
+
+    public static void playerLog(Player player,boolean login){
+        String action;
+        if (login){
+            action = "login";
+        }else{
+            action = "logout";
+        }
+        String table = cappLogin.Settings.getString("SQL.table");
+        Connection conn = sqlConnection();
+        if (cappLogin.logs ){
+            if (conn !=null) {
+                String command = "INSERT INTO"+table+"VALUES ("+player.getName()+","+player.getAddress().getAddress()+","+getTime()+","+action+")";
+
+                try {
+                    Statement str= conn.createStatement();
+                    str.execute(command);
+                } catch (SQLException e) {
+                    cappLogin.log.log(Level.WARNING,"SQLException in playerLog",e);
+                }
+            }else{
+                cappLogin.log.log(Level.WARNING,"connection is NULL in playerLog");
+            }
+        }
+
+    }
+
+    public static void checkTableExsit(){
+        Connection conn = sqlConnection();
+        String table = cappLogin.Settings.getString("SQL.table");
+        if (conn !=null) {
+            String command = "CREATE TABLE " + table + " IF NOT EXSIT VALUES(Player VARCHAR(20),IP_Address VARCHAR(50),Time DATETIME(),Action VARCHAR(20))";
+            try {
+                Statement str= conn.createStatement();
+                str.execute(command);
+            } catch (SQLException e) {
+                cappLogin.log.log(Level.WARNING,"SQLException in checkTableExsit",e);
+            }
+        }else{
+            cappLogin.log.log(Level.WARNING,"connection is NULL in checkTableExsit");
+        }
+
+    }
+
+    private static String getTime(){
+        Date date = new Date();
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-M-dd hh:mm:ss");
+        return dateFormat.format(date);
     }
 }
