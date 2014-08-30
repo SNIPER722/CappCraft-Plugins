@@ -5,6 +5,6 @@ CappCraft <img src="http://cappmc.org/styles/flexile/xenforo/logo.png" alt="Capp
 =========
 <h2>GroupMember:</h2> 
 <blockquote>Lujyka</blockquote><blockquote>RebirthIsHope</blockquote><blockquote>SNIPER722</blockquote><blockquote>Wormzjl</blockquote>
-
+=========
 Special thanks to BlackVoid's Plugins DynamicEffectWhitelist
 <p>URL: https://github.com/BlackVoid/DynamicEffectWhitelist</p>
