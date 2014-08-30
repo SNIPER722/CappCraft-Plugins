@@ -49,6 +49,8 @@ public class cappLogin extends JavaPlugin{
 
     public void onDisable(){
         Settings = null;
+        enable = false;
+        log.log(Level.INFO,"[cappLogin] cappLogin is unloaded");
     }
 
     @Override
