@@ -19,6 +19,7 @@ public class cappLogin extends JavaPlugin{
     static String maindir = "plugins/cappLogin/";
     public static YamlConfiguration Settings;
     static File SettingsFile = new File(maindir + "config.yml");
+    // controls
     public static boolean enable = true;
     public static boolean logs = true;
     public static boolean forceLauncher = true;
