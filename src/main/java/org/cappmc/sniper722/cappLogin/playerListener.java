@@ -1,5 +1,6 @@
 package org.cappmc.sniper722.cappLogin;
 
+import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
@@ -40,18 +41,20 @@ public class playerListener implements Listener{
             Utils.playerLog(event.getPlayer(),false);
         }
     }
-
+    */
     public void onPlayerJoin(PlayerJoinEvent event){
-        if (cappLogin.logs) {
+        /*if (cappLogin.logs) {
             Utils.playerLog(event.getPlayer(),true);
-            if (Utils.isVisitor(event.getPlayer())) {
-                String command = cappLogin.Settings.getString("General.guestPermissionConsoleCommand").replace("{player}", event.getPlayer().getName());
-                //TODO: exclute the console command
-            }
+
+        }*/
+
+        if (Utils.isVisitor(event.getPlayer())) {
+            String command = cappLogin.Settings.getString("General.guestPermissionConsoleCommand").replace("{player}", event.getPlayer().getName());
+            Bukkit.dispatchCommand(Bukkit.getConsoleSender(),command);
         }
 
     }
-    */
+
 
 
 
