@@ -34,7 +34,7 @@ public class playerListener implements Listener{
             }
         }
     }
-
+    /*
     public void onPlayerExit(PlayerQuitEvent event){
         if (cappLogin.logs) {
             Utils.playerLog(event.getPlayer(),false);
@@ -51,6 +51,7 @@ public class playerListener implements Listener{
         }
 
     }
+    */
 
 
 

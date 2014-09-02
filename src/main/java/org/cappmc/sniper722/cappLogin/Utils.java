@@ -39,7 +39,7 @@ public class Utils {
         String user = cappLogin.Settings.getString("SQL.user");
         String password = cappLogin.Settings.getString("SQL.password");
         try{
-           conn =  DriverManager.getConnection("jdbc:mysql://" + host + ";" + port + "/" + db, user, password);
+           conn =  DriverManager.getConnection("jdbc:mysql://" + host + ";" + port + "/" + db+"?autoReconnect=true&user="+user+"&password="+ password);
         }catch(SQLException e){
             cappLogin.log.log(Level.WARNING,"Fail to connect to Database",e);
         }

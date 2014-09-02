@@ -40,9 +40,11 @@ public class cappLogin extends JavaPlugin{
 
         enable = !Settings.getBoolean("Main.killswitch");
         logs = Settings.getBoolean("General.log");
-        forceLauncher = Settings.getBoolean("General.forceCappLaunche");
+        forceLauncher = Settings.getBoolean("General.forceCappLauncher");
         //check the log table is exsit or add table
-        Utils.checkTableExsit();
+        if  (logs) {
+            //Utils.checkTableExsit();
+        }
         // register plugins manager
         PluginManager pm = getServer().getPluginManager();
         // Registers Listener

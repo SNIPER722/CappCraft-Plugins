@@ -19,7 +19,7 @@ public class Config {
     }
 
     public static YamlConfiguration load(boolean exsit){
-        String dir = "plugins/cappLogin";
+        String dir = "plugins/cappLogin/";
         File Settings = new File(dir + "config.yml");
         try{
             Config = new YamlConfiguration();
@@ -39,7 +39,7 @@ public class Config {
             SetDeafult("SQL.table","log");
             SetDeafult("SQL.user","root");
             SetDeafult("SQL.password","password");
-
+            Config.save(Settings);
             //case new config
             return Config;
         }catch(FileNotFoundException e){
