@@ -4,7 +4,7 @@
 <p>CappLogin: login Auth plugin for CappCraft can force user to Use capp Launcher</p>
 - [ ] CappLogin
   - [X] force Luncher
-  - [X] Login & logout Log
+  - [ ] Login & logout Log
   - [ ] task
 
 =========
