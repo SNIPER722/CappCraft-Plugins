@@ -42,6 +42,7 @@ public class playerListener implements Listener{
         }
     }
     */
+    @EventHandler(priority = EventPriority.HIGH)
     public void onPlayerJoin(PlayerJoinEvent event){
         /*if (cappLogin.logs) {
             Utils.playerLog(event.getPlayer(),true);

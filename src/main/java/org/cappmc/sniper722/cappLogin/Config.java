@@ -30,7 +30,7 @@ public class Config {
             SetDeafult("General.forceCappLauncher",true);
             SetDeafult("General.log",true);
             SetDeafult("General.disconnectMessage","$1{player}, You use the wrong launcher!");
-            SetDeafult("General.guestPermissionConsoleCommand","manuadd {player} visitor");
+            SetDeafult("General.guestPermissionConsoleCommand","say hello {player}");
             SetDeafult("Auth.url","127.0.0.1");
             SetDeafult("Auth.port",8080);
             SetDeafult("SQL.url","127.0.0.1");

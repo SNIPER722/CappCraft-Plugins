@@ -28,6 +28,7 @@ public class Utils {
         if (!playerName.toLowerCase().startsWith("visitor")){
             result = false;
         }
+        cappLogin.log.log(Level.INFO,playerName +" is a visitor: "+result);
         return result;// true for visitor false else
     }
 
