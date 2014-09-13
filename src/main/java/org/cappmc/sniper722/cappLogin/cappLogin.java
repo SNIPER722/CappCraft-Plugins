@@ -27,14 +27,15 @@ public class cappLogin extends JavaPlugin{
     public void onEnable(){
         new File(maindir).mkdir();
         if (!SettingsFile.exists()){
+            log.log(Level.INFO,"File does not exsit");
             try{
                 SettingsFile.createNewFile();
-                Settings = Config.load(true);
+                Settings = Config.load(false);
             }catch (IOException e){
                 log.log(Level.WARNING,"Error loading config",e);
             }
         }else{
-            Settings = Config.load(false);
+            Settings = Config.load(true);
         }
         // End of loading Settings
 
