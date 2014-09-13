@@ -1,3 +1,9 @@
 name: cappLogin
 main: org.cappmc.sniper722.cappLogin.cappLogin
 version: 1.0b
+commands:
+   capplogin:
+      description: Turn on/off/reload the login.
+      usage: /<command> <on/off/reload>
+      permission: appLogin.all
+      permission-message: You don't have <permission>
