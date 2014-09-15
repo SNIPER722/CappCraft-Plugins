@@ -5,5 +5,5 @@ commands:
    capplogin:
       description: Turn on/off/reload the login.
       usage: /<command> <on/off/reload>
-      permission: appLogin.all
+      permission: cappLogin.all
       permission-message: You don't have <permission>
