@@ -9,7 +9,7 @@ import java.io.InputStreamReader;
 import java.net.Socket;
 
 /**
- * Created by SNIPEr722 on 28/08/2014.
+ * Created by SNIPR722 on 28/08/2014.
  */
 public class Auth {
 
