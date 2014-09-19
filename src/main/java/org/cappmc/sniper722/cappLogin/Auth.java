@@ -14,14 +14,14 @@ import java.net.Socket;
 public class Auth {
 
     public static boolean allowJoin(String playerName)throws IOException{
-        final String TAG= "Registry -c=McServer -n=";
+        final String TAG= "McUserVerify";
         boolean result = false;
         String tempResult;
         Socket connectionsocket = new Socket(cappLogin.Settings.getString("Auth.url"),cappLogin.Settings.getInt("Auth.port"));
         BufferedReader inFromServer = new BufferedReader(new InputStreamReader(connectionsocket.getInputStream()));
         DataOutputStream outToServer = new DataOutputStream( connectionsocket.getOutputStream());
 
-        outToServer.writeBytes(TAG+playerName);
+        outToServer.writeBytes(TAG+" "+playerName);
         tempResult = inFromServer.readLine();
 
         if (tempResult.equals("true")){
