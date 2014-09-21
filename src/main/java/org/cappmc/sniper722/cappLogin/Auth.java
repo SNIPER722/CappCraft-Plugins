@@ -14,20 +14,35 @@ import java.net.Socket;
 public class Auth {
 
     public static boolean allowJoin(String playerName)throws IOException{
+        final String REGIST = "Registry -c=McServer -n=";
         final String TAG= "McUserVerify";
+        final String URL = cappLogin.Settings.getString("Auth.url");
+        final int PORT = cappLogin.Settings.getInt("Auth.port");
+        String[] temparray;
         boolean result = false;
         String tempResult;
-        Socket connectionsocket = new Socket(cappLogin.Settings.getString("Auth.url"),cappLogin.Settings.getInt("Auth.port"));
+        Socket connectionsocket = new Socket(URL,PORT);
         BufferedReader inFromServer = new BufferedReader(new InputStreamReader(connectionsocket.getInputStream()));
         DataOutputStream outToServer = new DataOutputStream( connectionsocket.getOutputStream());
-
-        outToServer.writeBytes(TAG+" "+playerName);
+        outToServer.writeBytes(REGIST+playerName+"\r\n");
         tempResult = inFromServer.readLine();
-
-        if (tempResult.equals("true")){
-            result = true;
+        temparray = tempResult.split(":");
+        if (temparray[1].startsWith("true")){
+            tempResult = inFromServer.readLine();
+            temparray = tempResult.split(":");
+            if (temparray[1].startsWith("true")){
+                outToServer.writeBytes(TAG+" "+playerName+"\r\n");
+                tempResult = inFromServer.readLine();
+                if (temparray[1].startsWith("true")){
+                    result = true;
+                }
+            }
         }
+        outToServer.close();
+        inFromServer.close();
+        connectionsocket.close();
         //return result;
         return result;
     }
-}
+    }
+
