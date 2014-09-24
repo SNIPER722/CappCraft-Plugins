@@ -1,6 +1,6 @@
 name: cappLogin
 main: org.cappmc.sniper722.cappLogin.cappLogin
-version: 1.0b
+version: 1.0Release
 commands:
    capplogin:
       description: Turn on/off/reload the login.
