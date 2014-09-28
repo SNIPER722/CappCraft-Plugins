@@ -39,6 +39,7 @@ public class Config {
             SetDeafult("SQL.table","log");
             SetDeafult("SQL.user","root");
             SetDeafult("SQL.password","password");
+            SetDeafult("Other.debug",true);
             Config.save(Settings);
             //case new config
             return Config;

@@ -29,12 +29,13 @@ public class playerListener implements Listener{
             Utils.playerLog(event.getPlayer(),true);
 
         }*/
-
+        boolean result = false;
         if (cappLogin.Settings.getBoolean("General.forceCappLauncher")){
-            String playerName = event.getPlayer().getName();
-            boolean result = false;
+            String playerName= event.getPlayer().getName();
+
             boolean serverFail = false;
             String disconnectMessage = "null";
+            cappLogin.debugPrint("player try to connect to Server ["+playerName+"]");
             try {
                 result = Auth.allowJoin(playerName);
             }catch(IOException e){
@@ -54,7 +55,7 @@ public class playerListener implements Listener{
             }
         }
 
-        if (Utils.isVisitor(event.getPlayer())) {
+        if (Utils.isVisitor(event.getPlayer())&&result) {
             String command = cappLogin.Settings.getString("General.guestPermissionConsoleCommand").replace("{player}", event.getPlayer().getName());
             Bukkit.dispatchCommand(Bukkit.getConsoleSender(),command);
         }

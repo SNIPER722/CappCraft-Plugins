@@ -94,8 +94,10 @@ public class cappLogin extends JavaPlugin{
         return true;
     }
 
-
-
-
+    public static void debugPrint(String MSG) {
+        if (Settings.getBoolean("Other.debug")) {
+            log.log(Level.INFO, "[cappLogin-debug] " + MSG);
+        }
+    }
 
 }

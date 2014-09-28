@@ -21,23 +21,28 @@ public class Auth {
         String[] temparray;
         boolean result = false;
         String tempResult;
+        cappLogin.debugPrint("Player Received: "+playerName);
         Socket connectionsocket = new Socket(URL,PORT);
+        cappLogin.debugPrint("Server ["+URL+":"+PORT+"] connected");
         BufferedReader inFromServer = new BufferedReader(new InputStreamReader(connectionsocket.getInputStream()));
         DataOutputStream outToServer = new DataOutputStream( connectionsocket.getOutputStream());
+        cappLogin.debugPrint("Sent->"+REGIST+playerName);
         outToServer.writeBytes(REGIST+playerName+"\r\n");
+        //cappLogin.debugPrint("waiting Auth Server registration reply!");
         tempResult = inFromServer.readLine();
+        cappLogin.debugPrint("return<-"+tempResult);
         temparray = tempResult.split(":");
-        if (temparray[1].startsWith("true")){
+        if (temparray[1].equals("true}")){
+            cappLogin.debugPrint("Sent->"+TAG+" "+playerName);
+            outToServer.writeBytes(TAG+" "+playerName+"\r\n");
             tempResult = inFromServer.readLine();
-            temparray = tempResult.split(":");
-            if (temparray[1].startsWith("true")){
-                outToServer.writeBytes(TAG+" "+playerName+"\r\n");
-                tempResult = inFromServer.readLine();
-                if (temparray[1].startsWith("true")){
-                    result = true;
-                }
+            cappLogin.debugPrint("return<-"+tempResult);
+            if (tempResult.split(":")[1].startsWith("true")){
+                result = true;
             }
+
         }
+        cappLogin.debugPrint("Auth finish result: "+result);
         outToServer.close();
         inFromServer.close();
         connectionsocket.close();
