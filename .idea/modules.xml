@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/cappLogin.iml" filepath="$PROJECT_DIR$/cappLogin.iml" />
+      <module fileurl="file://$PROJECT_DIR$/CappCraft-Plugins.iml" filepath="$PROJECT_DIR$/CappCraft-Plugins.iml" />
     </modules>
   </component>
 </project>

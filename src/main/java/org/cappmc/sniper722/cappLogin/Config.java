@@ -29,8 +29,8 @@ public class Config {
             SetDeafult("Main.killswitch",false);
             SetDeafult("General.forceCappLauncher",true);
             SetDeafult("General.log",true);
-            SetDeafult("General.disconnectMessage","$1{player}, You use the wrong launcher!");
-            SetDeafult("General.guestPermissionConsoleCommand","say hello {player}");
+            //SetDeafult("General.disconnectMessage","$1{player}, You use the wrong launcher!");
+            //SetDeafult("General.guestPermissionConsoleCommand","say hello {player}");
             SetDeafult("Auth.url","127.0.0.1");
             SetDeafult("Auth.port",8080);
             SetDeafult("SQL.url","127.0.0.1");
@@ -39,7 +39,7 @@ public class Config {
             SetDeafult("SQL.table","log");
             SetDeafult("SQL.user","root");
             SetDeafult("SQL.password","password");
-            SetDeafult("Other.debug",true);
+            SetDeafult("Other.debug",false);
             Config.save(Settings);
             //case new config
             return Config;

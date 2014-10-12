@@ -21,7 +21,6 @@ import java.util.logging.Level;
 public class Utils {
 
 
-
     public static boolean isVisitor(Player player){
         boolean result = true;
         String playerName = player.getName();
@@ -32,21 +31,10 @@ public class Utils {
         return result;// true for visitor false else
     }
 
-    private static Connection sqlConnection(){
-        Connection conn = null;
-        String host = cappLogin.Settings.getString("SQL.url");
-        int port = cappLogin.Settings.getInt("SQL.port");
-        String db = cappLogin.Settings.getString("SQL.database");
-        String user = cappLogin.Settings.getString("SQL.user");
-        String password = cappLogin.Settings.getString("SQL.password");
-        try{
-           conn =  DriverManager.getConnection("jdbc:mysql://" + host + ";" + port + "/" + db+"?autoReconnect=true&user="+user+"&password="+ password);
-        }catch(SQLException e){
-            cappLogin.log.log(Level.WARNING,"Fail to connect to Database",e);
-        }
-
-        return conn;
+    public static String replaceName(String input,String playerName){
+        return input.replace("{player}",playerName);
     }
+
 
     public static InputStream phpconnection(String url){
         InputStream result = null;
@@ -111,5 +99,21 @@ public class Utils {
         Date date = new Date();
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-M-dd hh:mm:ss");
         return dateFormat.format(date);
+    }
+
+    private static Connection sqlConnection(){
+        Connection conn = null;
+        String host = cappLogin.Settings.getString("SQL.url");
+        int port = cappLogin.Settings.getInt("SQL.port");
+        String db = cappLogin.Settings.getString("SQL.database");
+        String user = cappLogin.Settings.getString("SQL.user");
+        String password = cappLogin.Settings.getString("SQL.password");
+        try{
+            conn =  DriverManager.getConnection("jdbc:mysql://" + host + ";" + port + "/" + db+"?autoReconnect=true&user="+user+"&password="+ password);
+        }catch(SQLException e){
+            cappLogin.log.log(Level.WARNING,"Fail to connect to Database",e);
+        }
+
+        return conn;
     }
 }

@@ -23,6 +23,8 @@ public class cappLogin extends JavaPlugin{
     public static boolean enable = true;
     public static boolean logs = true;
     public static boolean forceLauncher = true;
+    public static boolean debugmode = false;
+    public static String reason = "Wrong Launcher";
 
     public void onEnable(){
         new File(maindir).mkdir();
@@ -42,6 +44,7 @@ public class cappLogin extends JavaPlugin{
         enable = !Settings.getBoolean("Main.killswitch");
         logs = Settings.getBoolean("General.log");
         forceLauncher = Settings.getBoolean("General.forceCappLauncher");
+        debugmode = Settings.getBoolean("Other.debug");
         //check the log table is exsit or add table
         if  (logs) {
             //Utils.checkTableExsit();
@@ -85,6 +88,11 @@ public class cappLogin extends JavaPlugin{
                         onEnable();
                         log.log(Level.INFO,"[cappLogin] "+sender.getName()+" reload plugin");
                         sender.sendMessage("[cappLogin] reloaded");
+                    }else if(args[0].equals("debug")){
+                        debugmode = !debugmode;
+                        log.log(Level.INFO,"[cappLogin] "+sender.getName()+"turn debug "+debugmode);
+                        sender.sendMessage("[cappLogin] debug mode changed to "+debugmode);
+
                     }
                 }
             }else{
@@ -95,7 +103,7 @@ public class cappLogin extends JavaPlugin{
     }
 
     public static void debugPrint(String MSG) {
-        if (Settings.getBoolean("Other.debug")) {
+        if (debugmode) {
             log.log(Level.INFO, "[cappLogin-debug] " + MSG);
         }
     }

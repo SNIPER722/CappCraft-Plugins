@@ -44,18 +44,18 @@ public class playerListener implements Listener{
                 if (serverFail) {
                     disconnectMessage = "Auth Server fail Please contact Admin!";
                 }else{
-                    disconnectMessage = cappLogin.Settings.getString("General.disconnectMessage").replace("{player}", playerName);
+                    disconnectMessage = cappLogin.reason;
                 }
                 event.setKickMessage(disconnectMessage);
                 event.setResult(PlayerLoginEvent.Result.KICK_OTHER);
-                cappLogin.log.log(Level.INFO," ["+playerName+"]("+event.getAddress().getHostAddress()+") USE Wrong Launcher!");
+                cappLogin.log.log(Level.INFO," ["+playerName+"]("+event.getAddress().getHostAddress()+") "+cappLogin.reason);
             }
         }
 
-        if (Utils.isVisitor(event.getPlayer())&&result) {
+        /*if (Utils.isVisitor(event.getPlayer())&&result) {
             String command = cappLogin.Settings.getString("General.guestPermissionConsoleCommand").replace("{player}", event.getPlayer().getName());
             Bukkit.dispatchCommand(Bukkit.getConsoleSender(),command);
-        }
+        }*/
 
     }
 

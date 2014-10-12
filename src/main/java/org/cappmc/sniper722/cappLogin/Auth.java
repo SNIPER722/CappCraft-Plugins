@@ -1,6 +1,6 @@
 package org.cappmc.sniper722.cappLogin;
 
-import org.bukkit.entity.Player;
+import com.google.gson.Gson;
 
 import java.io.BufferedReader;
 import java.io.DataOutputStream;
@@ -37,10 +37,10 @@ public class Auth {
             outToServer.writeBytes(TAG+" "+playerName+"\r\n");
             tempResult = inFromServer.readLine();
             cappLogin.debugPrint("return<-"+tempResult);
-            if (tempResult.split(":")[1].startsWith("true")){
-                result = true;
-            }
-
+            Gson g = new Gson();
+            AuthResult r = g.fromJson(tempResult,AuthResult.class);
+            result = r.getAllowJoin();
+            cappLogin.reason = r.getError();
         }
         cappLogin.debugPrint("Auth finish result: "+result);
         outToServer.close();
