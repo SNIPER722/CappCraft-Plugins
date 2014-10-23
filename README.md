@@ -1,4 +1,4 @@
- <img src="http://cappmc.org/styles/flexile/xenforo/logo.png" alt="CappCraft">
+ <img src="http://cappmc.org/logo.png" alt="CappCraft">
 =========
 <h2> this plugins as been set as ON HOLD due to bukkit/spigot/caludron issue </h2>
 =========
